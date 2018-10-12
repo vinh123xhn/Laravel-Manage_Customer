@@ -35,13 +35,16 @@
                         <tr>
                             <th scope="row">{{ ++$key }}</th>
                             <td>{{ $customer['name'] }}</td>
-                            <td>{{ $customer['bod'] }}</td>
+                            <td>{{ $customer['dob'] }}</td>
                             <td>{{ $customer['email'] }}</td>
+                            <td><a href="{{route('customers.edit', $customer['id'])}}"> Sua</a> </td>
+                            <td><a href="{{route('customers.destroy', $customer->id)}}"> Xoa</a></td>
                         </tr>
                     @endforeach
                 @endif
                 </tbody>
             </table>
+            <a href="{{ route('customers.create') }}"> Create </a>
         </div>
     </div>
 </div>
