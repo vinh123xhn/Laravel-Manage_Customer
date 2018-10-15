@@ -15,36 +15,38 @@
 <div class="container">
     <div class="col-12">
         <div class="row">
-            <h1>Danh Sách Khách Hàng</h1>
+            <div class="col-12">
+                <h1>Danh Sách Khách Hàng</h1>
+            </div>
             <table class="table table-striped">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Tên khách hàng</th>
-                    <th scope="col">Ngày Sinh</th>
-                    <th scope="col">Email</th>
+                    <th scope="col">Tên tỉnh thành</th>
+                    <th scope="col">Số khách hàng</th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                @if(count($customers) == 0)
+                @if(count($cities) == 0)
                     <tr>
                         <td colspan="4">Không có dữ liệu</td>
                     </tr>
                 @else
-                    @foreach($customers as $key => $customer)
+                    @foreach($cities as $key => $citie)
                         <tr>
                             <th scope="row">{{ ++$key }}</th>
-                            <td>{{ $customer['name'] }}</td>
-                            <td>{{ $customer['dob'] }}</td>
-                            <td>{{ $customer['email'] }}</td>
-                            <td><a href="{{route('customers.edit', $customer['id'])}}"> Sua</a> </td>
-                            <td><a href="{{route('customers.destroy', $customer->id)}}"> Xoa</a></td>
+                            <td>{{ $citie->name }}</td>
+                            <td>{{ count($citie->customers) }}</td>
+                            <td><a href="{{ route('cities.edit', $citie->id) }}">sửa</a></td>
+                            <td><a href="{{ route('cities.delete', $citie->id) }}" class="text-danger" onclick="return confirm('Bạn chắc chắn muốn xóa?')">xóa</a></td>
                         </tr>
                     @endforeach
                 @endif
                 </tbody>
             </table>
-            <a href="{{ route('customers.create') }}"> Create </a>
+            <a class="btn btn-primary" href="{{ route('cities.create') }}">Thêm mới</a>
         </div>
     </div>
 </div>
